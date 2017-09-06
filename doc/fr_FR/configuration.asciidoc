@@ -1,0 +1,50 @@
+Ce plugin permet d'afficher une Horloge (style HTC sense) avec ou sans la météo. +
+image::../images/HorlogeAvecMeteo.png[] +
+image::../images/HorlogeSansMeteo.png[] +
+
+== Configuration du plugin
+Une fois le plugin installé et activé,veuillez vous rendre sur la page de configuration. Elle est disponible dans *Plugins/Météo/HorlogesHtc*. +
+image::../images/Plugin.png[] +
+	
+== Configuration des équipements
+
+La configuration des équipements est accessible à partir du menu *Plugins/Metéo/HorlogeHtc*. +
+
+image::../images/HorlogeHtc-General.png[]
+
+La page du plugin regroupe l’ensemble des Horloges configurées : +
+
+Cliquer sur “Ajouter” pour ajouter une Horloge. Renseignez ensuite les *paramètres*.
+
+. *Activer ou Non la météo* :
+- faite votre choix pour obtenir l'horloge avec ou sans météo +
+image::../images/BoutonMeteo.png[]
+
+. *Coordonnées GPS (Si la météo est activée)* :
+- Aller sur https://www.google.fr/maps/
+- Faite un "clic droit" sur l'endroit qui vous interresse et sélectionner "Plus d'info sur cet endroit"
+- Copier/Coller les coordonées. +
+image::../images/GoogleMap01.jpg[] +
+image::../images/GoogleMap02.jpg[]
+
+. *Clef API Forecast.io (Si la météo est activée)* :
+- Aller vous inscrire sur "https://developer.forecast.io/" 
+- Copier/Coller la clé fournie.
+
+
+
+== Présentation du Widget
+
+En mode Météo actif, les informations sont recupérées toutes les 30 minutes sur le site de ForeCast.io.
+
+La transparence est possible en mode Dashboard ou Design afin de pourvoir l'intégrer plus facilement dans vos visuels. +
+
+image::../images/Design.png[]
+
+== FAQ
+
+. En cas de problème de récupération de la météo, en mode Météo activé. Verifiez que vous n'avez pas mis d'espace dans les Coordonées GPS.
+
+. Vérifiez vos logs (en mode debug), ils sont très bavard.
+
+. Le resize en mode dashboard n'est pas possible pour le moment.

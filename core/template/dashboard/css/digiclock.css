@@ -1,0 +1,261 @@
+#plugin_container {
+    width:440px;
+    height:400px;
+    position:relative;
+    overflow:hidden;
+    font-family:Arial, Verdana, Tahoma, Helvetica, sans-serif;
+}
+
+#plugin_container p {
+    margin:0;
+    padding:0;
+}
+
+#left_arrow, #right_arrow {
+    position:absolute;
+    top:3px;
+	right:5px;
+    z-index:200;
+    cursor:pointer;
+}
+
+#left_arrow {
+    right:5px;
+}
+
+#right_arrow {
+    right:5px;
+}
+
+#digital_container {
+    width:440px;
+    height:400px;
+	background:url(../images/sansmeteo.png) 50% 40px no-repeat;
+	position:absolute;
+    top:0px;
+    left:30px;
+    z-index:98;
+}
+
+
+#clock {
+    float:left;
+    margin-left:17px;
+}
+
+#hours, #minutes {
+    width:200px;
+    height:200px;
+    float:left;
+    position:relative;
+}
+
+#minutes {
+    margin-left:4px;
+}
+
+#hours_bg, #minutes_bg {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:99;
+}
+
+.first_digit {
+    width:80px;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:20px;
+    z-index:100;
+}
+
+.second_digit {
+    width:80px;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:100px;
+    z-index:100;
+}
+
+.line {
+    width:175px;
+    height:2px;
+    background:#efefef;
+    position:absolute;
+    top:97px;
+    left:12px;
+    z-index:101;
+    font-size:1px;
+}
+
+#am_pm {
+    position:absolute;
+    top:156px;
+    left:130px;
+    z-index:110;
+}
+
+#weather {
+    width:100%;
+    height:206px;
+    position:absolute;
+    top:140px;
+    left:0;
+    z-index:105;
+    color:#fff;
+}
+
+#weather #local, #weather .loading {
+    float:left;
+    margin:51px 0 0 13px;
+}
+
+.city {
+    font-weight:bold;
+    font-size:12pt;
+	text-shadow : 2px 2px 1px rgba(0, 0, 0, 1);
+}
+
+#cityForcast {
+    font-weight:bold;
+    font-size:10pt;
+	position:absolute;
+	top:144px;
+}
+
+#JourForecast {
+	font-size: 9pt;
+    font-weight: bold;
+    position: absolute;
+    top: 160px;
+}
+
+
+.temp {
+    font-size:35pt;
+    padding:0;
+	text-shadow: 3px 3px 2px rgba(0, 0, 0, 1);
+}
+
+
+
+.temp .metric {
+    margin-left:-3px;
+}
+
+#weather #temp {
+    float:right;
+    margin:-40px 11px 0 0;
+    text-align:right;
+	clear:both;
+}
+
+#weather #InfSup{
+    float: left;
+    margin: 3px 0 0 16px;
+    width: 200px;
+}
+
+#weather #InfSup .humiditePressionVent {
+    font-size:8pt;
+	}
+
+#weather #date {
+    font-size:9pt;
+    padding-right:2px;
+	font-weight:bold;
+}
+
+#forecast_container {
+    width:500px;
+    height:360px;
+    background:url(../images/background_forecast.png) 50% 100% no-repeat;
+    position:absolute;
+    top:0;
+    left:3000px;
+    z-index:98;
+}
+#forecast_container li {
+    font-family:verdana;
+}
+#forecast_container #current {
+    width:400px;
+    height:200px;
+    margin-left:50px;
+    position:relative;
+	margin-bottom:-20px;
+}
+
+#forecast_container .loading {
+    margin:100px 0 0 70px;
+}
+
+#forecast_container #current .temp, #forecast_container #current .high_low {
+    width:116px;
+    text-align:center;
+}
+
+#forecast_container #current .temp {
+    font-size:32pt;
+    margin-top:110px;
+    float:left
+}
+
+#forecast_container #current .high_low {
+    font-size:8pt;
+    clear:both;
+	font-weight:bold;
+}
+
+#forecast_container #current .city, #forecast_container #current .text {
+    width:100%;
+    text-align:center;
+}
+
+#forecast_container #current .text {
+    margin-top:6px;
+}
+
+#forecast_container #forecast {
+    width:380px;
+    height:140px;
+    list-style:none;
+    margin:0 0 0 60px;
+    padding:0;
+}
+
+#forecast_container #forecast li {
+    width:20%;
+    height:100%;
+    float:left;
+    text-align:center;
+}
+
+#forecast_container #forecast li p {
+    width:100%;
+    height:50px;
+    margin:0;
+    padding:0;
+    font-size:9pt;
+    line-height:65px;
+}
+
+#forecast_container #forecast li img {
+    width:80px;
+}
+
+#forecast_container #update {
+    text-align:center;
+    margin-top:10px;
+    font-size:11px;
+}
+
+#forecast_container #update img {
+    margin:-2px 4px 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+}
