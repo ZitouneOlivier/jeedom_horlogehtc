@@ -2,7 +2,7 @@
 	"id" : "horlogehtc",
 	"name" : "HorlogeHtc",
 	"icon" : "/doc/images/horlogehtc_icon.png",
-	"description" : "Plugin pour afficher une Horloge avec météo du type HTC Sense",
+	"description" : "Plugin pour afficher une Horloge avec ou sans météo du type HTC Sense",
 	"licence" : "AGPL",
 	"author" : "Zitoune",
 	"require" : "2.2",
