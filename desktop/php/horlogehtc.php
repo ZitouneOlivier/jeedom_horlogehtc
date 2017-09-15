@@ -22,7 +22,6 @@ $eqLogics = eqLogic::byType('horlogehtc');
 			</ul>
 		</div>
 	</div>
-
 	<div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 		<legend><i class="fa fa-android"></i>  {{Mes horloges}}
 		</legend>
@@ -40,7 +39,6 @@ $eqLogics = eqLogic::byType('horlogehtc');
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
 			</div>
 		</div>
-	</div>
 		<?php
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
@@ -52,6 +50,7 @@ $eqLogics = eqLogic::byType('horlogehtc');
 				echo '</div>';
 			}
 		?>
+	</div>
 </div>
 
 
