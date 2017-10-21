@@ -42,7 +42,7 @@ image::../images/GoogleMap02.jpg[]
 
 - *Sans météo* :
 
-- *Aves la Météo* :
+- *Avec la Météo* :
 
 En mode Météo actif, les informations sont recupérées toutes les 30 minutes sur le site de ForeCast.io.
 
