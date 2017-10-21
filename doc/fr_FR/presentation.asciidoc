@@ -1,9 +1,11 @@
 Ce plugin permet d'afficher une Horloge (style HTC sense) avec ou sans la météo. +
+
 image::../images/HorlogeAvecMeteo.png[] +
 image::../images/HorlogeSansMeteo.png[]
 
 == Configuration du plugin
 Une fois le plugin installé et activé,veuillez vous rendre sur la page de configuration. Elle est disponible dans *Plugins/Météo/HorlogesHtc*. +
+
 image::../images/Plugin.png[]
 	
 == Configuration des équipements
