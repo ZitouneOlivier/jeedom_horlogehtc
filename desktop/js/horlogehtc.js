@@ -68,7 +68,7 @@ function addCmdToTable(_cmd) {
         tr += '</td>';
         tr += '<td>';
 			if (init(_cmd.subType) == "numeric") {
-				tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
+				//tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
 			}
         tr += '</td>';
 
