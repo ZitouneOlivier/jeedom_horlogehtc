@@ -187,7 +187,7 @@ $eqLogics = eqLogic::byType('horlogehtc');
 							<th>{{Origine}}</th>
 							<th>{{Nom}}</th>
 							<th>{{Valeur}}</th>
-							<th>{{Paramètres}}</th>
+							<!--<th>{{Paramètres}}</th>-->
 						 </tr>
 					</thead>
 					<tbody>
