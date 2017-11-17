@@ -157,7 +157,7 @@ class horlogehtc extends eqLogic {
 	  log::add('horlogehtc', 'debug', 'Objet Vitesse du Vent (LogicalId windSpeed) existe deja > pas de création');
 	}
 	$horlogehtcCmd->setConfiguration('category','actual');
-    $horlogehtcCmd->setUnite( 'm/s' );
+    $horlogehtcCmd->setUnite( 'km/h' );
     $horlogehtcCmd->save();
 
 
