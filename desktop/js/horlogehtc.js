@@ -61,7 +61,7 @@ function addCmdToTable(_cmd) {
         tr += '<td>';
 			tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
         tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
+        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"> </span>';
 			if (init(_cmd.subType) == "numeric") {
 				tr += '<span class="cmdAttr" data-l1key="unite"></span> ';
 			}
