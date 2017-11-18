@@ -61,14 +61,14 @@ function addCmdToTable(_cmd) {
         tr += '<td>';
 			tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
         tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
+        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"> </span>';
 			if (init(_cmd.subType) == "numeric") {
 				tr += '<span class="cmdAttr" data-l1key="unite"></span> ';
 			}
         tr += '</td>';
         tr += '<td>';
 			if (init(_cmd.subType) == "numeric") {
-				tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
+				//tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
 			}
         tr += '</td>';
 

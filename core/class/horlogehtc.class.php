@@ -157,7 +157,7 @@ class horlogehtc extends eqLogic {
 	  log::add('horlogehtc', 'debug', 'Objet Vitesse du Vent (LogicalId windSpeed) existe deja > pas de création');
 	}
 	$horlogehtcCmd->setConfiguration('category','actual');
-    $horlogehtcCmd->setUnite( 'm/s' );
+    $horlogehtcCmd->setUnite( 'km/h' );
     $horlogehtcCmd->save();
 
 
@@ -294,7 +294,6 @@ class horlogehtc extends eqLogic {
 		$temperature = $this->getCmd(null, 'temperature');
 		$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
 	} else {
-		//$temperature = number_format(jeedom::evaluateExpression($this->getConfiguration('temperaturelocal')), 1);
 		$temperature = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
 		$replace['#temperature#'] = $temperature;
 	}
