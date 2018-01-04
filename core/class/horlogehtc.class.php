@@ -266,6 +266,9 @@ class horlogehtc extends eqLogic {
 					if ($key == 'humidity') {
 						$value = $value * 100;
 					}
+					if ($key == 'windSpeed') {
+						$value = $value * 3.6;
+					}
 				$horlogehtcCmd->setConfiguration('value',$value);
 				log::add('horlogehtc', 'debug', '  Enregistrement Mode CURRENTLY > '. $key . ' = ' . $value);
 				$horlogehtcCmd->save();
