@@ -295,7 +295,7 @@ class horlogehtc extends eqLogic {
 
 	if ($this->getConfiguration('TemperatureIsLocal') != '1') {
 		$temperature = $this->getCmd(null, 'temperature');
-		$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
+		$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd(),1) : '';
 	} else {
 		$temperature = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
 		$replace['#temperature#'] = $temperature;
