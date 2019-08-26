@@ -3,6 +3,6 @@
 	"name" : "HorlogeHtc",
 	"licence" : "AGPL",
 	"author" : "Zitoune",
-	"require" : "2.2",
+	"require" : "3.2",
 	"category" : "weather"
 }
