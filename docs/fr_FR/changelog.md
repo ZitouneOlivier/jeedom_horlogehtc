@@ -4,11 +4,11 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
-## 2019-09-xx
+## 2019-09-05
 
 - Migration de la doc de asciidoc vers markdown (Mips2648)
 - Mise à jour de la page équipement au standard jeedom v4 (Mips2648)
-- migration vers fontawesome 5 (Mips2648)
+- Migration vers fontawesome 5 (Mips2648)
 
 ## 2019-09-03
 
