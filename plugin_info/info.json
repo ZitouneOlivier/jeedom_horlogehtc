@@ -9,8 +9,8 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "",
-	"documentation" : "",
+	"changelog" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/changelog/",
+	"documentation" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/",
 	"link" : {
 		"forum":"",
 		"video" : ""
