@@ -9,12 +9,12 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/changelog/",
+	"changelog" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/changelog",
 	"documentation" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/",
 	"link" : {
-		"forum":"",
+		"forum":"https://www.jeedom.com/forum/viewtopic.php?f=139&t=47441",
 		"video" : ""
 	},
-	"language" : ["fr_FR"],
+	"language" : ["fr_FR, en_US"],
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"]
 }
