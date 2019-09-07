@@ -1,3 +1,10 @@
+---
+layout: default
+title: Changelog
+lang: en_US
+permalink: /changelog/
+---
+
 # Changelog
 
 Liste des versions du plugin Horloge HTC.
