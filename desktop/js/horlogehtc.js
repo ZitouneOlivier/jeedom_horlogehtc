@@ -16,37 +16,37 @@
  */
 
 $('#bt_selectTemperature').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-		$('.eqLogicAttr[data-l2key=temperaturelocal]').atCaret('insert', result.human);
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
+        $('.eqLogicAttr[data-l2key=temperaturelocal]').atCaret('insert', result.human);
     });
 });
 
 $('#bt_selectPression').on('click', function () {
-		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-			$('.eqLogicAttr[data-l2key=pressionlocal]').atCaret('insert', result.human);
-		});
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
+        $('.eqLogicAttr[data-l2key=pressionlocal]').atCaret('insert', result.human);
+    });
 });
 
 $('#bt_selectHumidite').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-		$('.eqLogicAttr[data-l2key=humiditelocal]').atCaret('insert', result.human);
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
+        $('.eqLogicAttr[data-l2key=humiditelocal]').atCaret('insert', result.human);
     });
 });
 
 
-$("#table_cmd").delegate(".listEquipementInfo", 'click', function() {
+$("#table_cmd").delegate(".listEquipementInfo", 'click', function () {
     var el = $(this);
-    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
         atCaret('insert', result.human);
     });
 });
 
-$("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: false});
+$("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: false });
 
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
-        var _cmd = {configuration: {}};
+        var _cmd = { configuration: {} };
     }
     if (!isset(_cmd.configuration)) {
         _cmd.configuration = {};
@@ -56,26 +56,24 @@ function addCmdToTable(_cmd) {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
-			tr += '<span class="cmdAttr" data-l1key="id"></span>';
+        tr += '<span class="cmdAttr" data-l1key="id"></span>';
         tr += '</td>';
         tr += '<td>';
-			tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
+        tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
         tr += '<td>';
         tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"> </span>';
-			if (init(_cmd.subType) == "numeric") {
-				tr += '<span class="cmdAttr" data-l1key="unite"></span> ';
-			}
+        if (init(_cmd.subType) == "numeric") {
+            tr += '<span class="cmdAttr" data-l1key="unite"></span> ';
+        }
         tr += '</td>';
         tr += '<td>';
-			if (init(_cmd.subType) == "numeric") {
-				//tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
-			}
+        if (init(_cmd.subType) == "numeric") {
+            //tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
+        }
         tr += '</td>';
 
         tr += '</tr>';
         $('#table_cmd tbody').append(tr);
         $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
-
-    
 }
