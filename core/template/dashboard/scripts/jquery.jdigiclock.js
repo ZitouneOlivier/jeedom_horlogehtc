@@ -75,9 +75,7 @@
     });
 
     HtcDelay = function () {
-        var delay = (60 - new Date().getSeconds()) * 1000;
-        console.log('delay:' + delay)
-        return delay;
+        return (60 - new Date().getSeconds()) * 1000;
     }
 
     $.fn.displayClock = function (el) {
