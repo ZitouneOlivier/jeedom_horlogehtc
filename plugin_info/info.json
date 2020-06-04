@@ -12,9 +12,9 @@
 	"changelog" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/changelog",
 	"documentation" : "https://ZitouneOlivier.github.io/jeedom_horlogehtc/#language#/",
 	"link" : {
-		"forum":"https://www.jeedom.com/forum/viewtopic.php?f=139&t=47441",
+		"forum":"https://community.jeedom.com/tag/plugin-horlogehtc",
 		"video" : ""
 	},
-	"language" : ["fr_FR, en_US"],
-	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"]
+	"language" : ["fr_FR"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","v4"]
 }
