@@ -18,7 +18,7 @@ Une fois le plugin installé via le market, vous devez seulement l'activer.
 
 ## Configuration des équipements
 
-Une fois le plugin installé et activé, veuillez vous rendre sur la page de configuration des équipements qui est accessible à partir du menu *Plugins/Metéo/HorlogeHtc*.
+Une fois le plugin installé et activé, veuillez vous rendre sur la page de configuration des équipements qui est accessible à partir du menu *Plugins/Météo/HorlogeHtc*.
 ![menu plugin](../images/Plugin.png "menu plugin")
 
 La page du plugin regroupe l’ensemble des Horloges configurées:
@@ -34,13 +34,13 @@ Activer ou non l'affichage de l'*heure de collecte* et de la *météo*:
 
 ### Configuration météo
 
-En mode Météo actif, les informations sont recupérées toutes les 30 minutes sur le site de ForeCast.io.
+En mode Météo actif, les informations sont récupérées toutes les 30 minutes sur le site de ForeCast.io.
 
 #### Coordonnées GPS (Si la météo est activée)
 
 - Aller sur <https://www.google.com/maps/>
-- Faite un "clic droit" sur l'endroit qui vous interresse et sélectionner "Plus d'info sur cet endroit"
-- Copier/Coller les coordonées.
+- Faite un "clic droit" sur l'endroit qui vous intéresse et sélectionner "Plus d'info sur cet endroit"
+- Copier/Coller les coordonnées.
 
 ![Etape 2](../images/GoogleMap01.jpg "Etape 2")
 
@@ -67,7 +67,7 @@ La transparence est possible en mode Dashboard ou Design afin de pourvoir l'int�
 
 ## FAQ
 
-- En cas de problème de récupération de la météo, en mode Météo activé. Verifiez que vous n'avez pas mis d'espace dans les Coordonées GPS.
+- En cas de problème de récupération de la météo, en mode Météo activé. Vérifiez que vous n'avez pas mis d'espace dans les Coordonnées GPS.
 - Vérifiez vos logs (en mode debug), ils sont très bavard.
 - Le resize en mode dashboard n'est pas possible.
 
