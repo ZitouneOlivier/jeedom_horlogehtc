@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Changelog
-lang: en_US
-permalink: /changelog/
+lang: fr_FR
 ---
 
 # Changelog
