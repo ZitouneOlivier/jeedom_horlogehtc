@@ -94,12 +94,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />{{Visible}}</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">{{Commentaire}}</label>
-							<div class="col-md-4">
-								<textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
-							</div>
-						</div>
 					</fieldset>
 				</form>
 				<form class="form-horizontal">
@@ -169,14 +163,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="commandtab">
-				<legend><i class="fas fa-cloud"></i> {{Valeurs Actuelles}}</legend>
 				<table id="table_cmd" class="table table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>ID</th>
 							<th>{{Nom}}</th>
-							<th>{{Valeur}}</th>
-							<!--<th>{{Paramètres}}</th>-->
+							<th style="width: 100px;">{{Unité}}</th>
+							<th style="width: 300px;">{{Options}}</th>
+							<th style="width: 150px;">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
