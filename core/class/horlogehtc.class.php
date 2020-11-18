@@ -304,8 +304,8 @@ class horlogehtc extends eqLogic {
 	public function refreshInformations() {
 		log::add('horlogehtc', 'debug','Start de la Fonction refreshInformations()');
 
-		if (!$this->getInfoFromForecastIo()) {
-			$this->getInfoFromWeather();
+		if (!$this->getInfoFromWeather()) {
+			$this->getInfoFromForecastIo();
 		}
 
 		$this->refreshWidget();

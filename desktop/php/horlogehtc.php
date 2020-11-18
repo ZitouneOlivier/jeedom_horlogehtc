@@ -67,9 +67,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<select class="form-control eqLogicAttr" data-l1key="object_id">
 									<option value="">{{Aucun}}</option>
 									<?php
-									foreach (jeeObject::all() as $object) {
-										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-									}
+										$options = '';
+										foreach ((jeeObject::buildTree(null, false)) as $object) {
+											$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
+										}
+										echo $options;
 									?>
 								</select>
 							</div>
@@ -133,6 +135,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<label class="col-sm-3 control-label">{{Equipement météo}}</label>
 									<div class="col-sm-3">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="weatherEqLogic">
+											<option value="">{{Aucun (utiliser Forecast.io)}}</option>
 											<?php
 												foreach ($weatherEqLogics as $eqLogic) {
 													echo '<option value="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</option>';
