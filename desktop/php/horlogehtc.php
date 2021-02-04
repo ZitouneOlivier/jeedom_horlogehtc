@@ -23,7 +23,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			</div>
 		</div>
 		<legend><i class="fab fa-android"></i> {{Mes horloges}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchEqlogic" />
+		<div class="input-group" style="margin:5px;">
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
+			<div class="input-group-btn">
+				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i></a>
+			</div>
+		</div>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			foreach ($eqLogics as $eqLogic) {
@@ -40,8 +45,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
-			<span class="input-group-btn">
-				<a class="btn btn-default btn-sm eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-default btn-sm eqLogicAction" data-action="copy"><i class="fas fa-copy"></i> {{Dupliquer}}</a><a class="btn btn-success btn-sm eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+		<span class="input-group-btn">
+				<a class="btn btn-sm btn-default eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i><span class="hidden-xs"> {{Configuration avancée}}</span>
+				</a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs">  {{Dupliquer}}</span>
+				</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-sm btn-danger eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i><span class="hidden-xs"> {{Supprimer}}</span>
+				</a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
@@ -151,56 +160,58 @@ $eqLogics = eqLogic::byType($plugin->getId());
 					?>
 						<div class="form-group">
 							<label class="col-md-3 control-label">{{Température locale}}</label>
+
 							<div class="col-md-4">
 								<div class="input-group">
-									<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="temperaturelocal" />
+									<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="temperaturelocal" />
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectTemperature"><i class="fas fa-list-alt"></i></a>
+										<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectTemperature"><i class="fas fa-list-alt"></i></a>
 									</span>
 								</div>
 							</div>
-							<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="TemperatureIsLocal" checked />{{Utiliser}}</label>
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 control-label">{{Pression locale}}</label>
 							<div class="col-md-4">
 								<div class="input-group">
-									<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="pressionlocal" />
+									<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="pressionlocal" />
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectPression"><i class="fas fa-list-alt"></i></a>
+										<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectPression"><i class="fas fa-list-alt"></i></a>
 									</span>
 								</div>
 							</div>
-							<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="PressionIsLocal" checked />{{Utiliser}}</label>
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 control-label">{{Humidité locale}}</label>
 							<div class="col-md-4">
 								<div class="input-group">
-									<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="humiditelocal" />
+									<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="humiditelocal" />
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectHumidite"><i class="fas fa-list-alt"></i></a>
+										<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectHumidite"><i class="fas fa-list-alt"></i></a>
 									</span>
 								</div>
 							</div>
-							<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="HumiditeIsLocal" checked />{{Utiliser}}</label>
 						</div>
 					</fieldset>
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="commandtab">
-				<table id="table_cmd" class="table table-bordered table-condensed">
-					<thead>
-						<tr>
-							<th>{{Nom}}</th>
-							<th style="width: 100px;">{{Unité}}</th>
-							<th style="width: 300px;">{{Options}}</th>
-							<th style="width: 150px;">{{Actions}}</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+				<div class="table-responsive">
+					<table id="table_cmd" class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>{{Nom}}</th>
+								<th></th>
+								<th>{{Type}}</th>
+								<th>{{Paramètres}}</th>
+								<th>{{Options}}</th>
+								<th>{{Action}}</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

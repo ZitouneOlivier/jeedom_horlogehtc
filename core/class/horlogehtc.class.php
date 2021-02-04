@@ -33,31 +33,16 @@ class horlogehtc extends eqLogic {
 
 	public function preUpdate() {
 		log::add('horlogehtc', 'debug', 'Start de la Fonction preUpdate()');
-		if ($this->getConfiguration('MeteoOn') != '1') {
-			log::add('horlogehtc', 'debug', 'Horloge Sans Météo');
-		} else {
-			log::add('horlogehtc', 'debug', 'Horloge avec Météo');
-			if ($this->getConfiguration('coordonees') != '') {
-				$this->setConfiguration('coordonees',str_replace(' ','',$this->getConfiguration('coordonees', '')));
-				log::add('horlogehtc', 'debug', 'Suppression des espaces des coordonees gps > ' . $this->getConfiguration('coordonees', ''));
-			}
-			if ($this->getConfiguration('apikey') != '') {
-				$this->setConfiguration('apikey',str_replace(' ','',$this->getConfiguration('apikey', '')));
-				log::add('horlogehtc', 'debug', 'Suppression des espaces des apikey forecast.io > ' . $this->getConfiguration('apikey', ''));
-			}
-			if ($this->getConfiguration('PressionIsLocal') != '1') {
-				log::add('horlogehtc', 'debug', 'Pas de Pression Local');
-			} else {
-				log::add('horlogehtc', 'debug', 'Utilise la Pression Local');
-			}
 
-			if ($this->getConfiguration('TemperatureIsLocal') == '1') {
-				log::add('horlogehtc', 'debug', 'Temperature Local');
-			}
-			if ($this->getConfiguration('HumiditeIsLocal') == '1') {
-				log::add('horlogehtc', 'debug', 'Humidite Local');
-			}
+		if ($this->getConfiguration('coordonees') != '') {
+			$this->setConfiguration('coordonees',str_replace(' ','',$this->getConfiguration('coordonees', '')));
+			log::add('horlogehtc', 'debug', 'Suppression des espaces des coordonees gps > ' . $this->getConfiguration('coordonees', ''));
 		}
+		if ($this->getConfiguration('apikey') != '') {
+			$this->setConfiguration('apikey',str_replace(' ','',$this->getConfiguration('apikey', '')));
+			log::add('horlogehtc', 'debug', 'Suppression des espaces des apikey forecast.io > ' . $this->getConfiguration('apikey', ''));
+		}
+
 		log::add('horlogehtc', 'debug', 'Fin de la Fonction preUpdate()');
 	}
 
@@ -114,7 +99,7 @@ class horlogehtc extends eqLogic {
 				$horlogehtcCmd->setLogicalId('humidity');
 				$horlogehtcCmd->setType('info');
 				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite( '%' );
+				$horlogehtcCmd->setUnite('%');
 				$horlogehtcCmd->save();
 				log::add('horlogehtc', 'debug', 'Création de la commande Humidité (humidity)');
 			}
@@ -127,7 +112,7 @@ class horlogehtc extends eqLogic {
 				$horlogehtcCmd->setLogicalId('windSpeed');
 				$horlogehtcCmd->setType('info');
 				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite( 'km/h' );
+				$horlogehtcCmd->setUnite('km/h');
 				$horlogehtcCmd->save();
 				log::add('horlogehtc', 'debug', 'Création de la commande Vitesse du Vent (windSpeed)');
 			}
@@ -140,7 +125,7 @@ class horlogehtc extends eqLogic {
 				$horlogehtcCmd->setLogicalId('pressure');
 				$horlogehtcCmd->setType('info');
 				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite( 'hPa' );
+				$horlogehtcCmd->setUnite('hPa');
 				$horlogehtcCmd->save();
 				log::add('horlogehtc', 'debug', 'Création de la commande Pression (pressure)');
 			}
@@ -323,27 +308,25 @@ class horlogehtc extends eqLogic {
 			return '';
 		}
 
-		if ($this->getConfiguration('TemperatureIsLocal') != '1') {
+		if ($this->getConfiguration('temperaturelocal') == '') {
 			$temperature = $this->getCmd(null, 'temperature');
 			$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd(),1) : '';
 		} else {
-			$temperature = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
-			$replace['#temperature#'] = $temperature;
+			$replace['#temperature#'] = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
 		}
 
-		if ($this->getConfiguration('HumiditeIsLocal') != '1') {
+		if ($this->getConfiguration('humiditelocal') == '') {
 			$humidity = $this->getCmd(null, 'humidity');
 			$replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
 		} else {
-			$humidity = jeedom::evaluateExpression($this->getConfiguration('humiditelocal'));
-			$replace['#humidity#'] = $humidity;
+			$replace['#humidity#'] = jeedom::evaluateExpression($this->getConfiguration('humiditelocal'));
 		}
-		if ($this->getConfiguration('PressionIsLocal') != '1') {
+
+		if ($this->getConfiguration('pressionlocal') == '') {
 			$pressure = $this->getCmd(null, 'pressure');
 			$replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
 		} else {
-			$pressure = jeedom::evaluateExpression($this->getConfiguration('pressionlocal'));
-			$replace['#pressure#'] = $pressure;
+			$replace['#pressure#'] = jeedom::evaluateExpression($this->getConfiguration('pressionlocal'));
 		}
 
 		$wind_speed = $this->getCmd(null, 'windSpeed');
