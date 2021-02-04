@@ -10,11 +10,11 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
-## 2020-11-12
+## 2020-02-04
 
 - Ajout de la possibilité de connecter ce plugin au info du plugin officiel Météo (weather) car l'api darkshy/forecast.io sera bientôt coupée (Mips)
-- Nettoyage de la mise en page pour la V4
-- Nouvelle présentation de la liste des objets
+- Nettoyage de la mise en page pour la V4 (Mips)
+- Nouvelle présentation de la liste des objets (Mips)
 
 ## 2020-06-05
 

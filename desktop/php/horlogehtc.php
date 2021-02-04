@@ -157,7 +157,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<?php
 							}
 						}
-					?>
+						?>
 						<div class="form-group">
 							<label class="col-md-3 control-label">{{Température locale}}</label>
 
