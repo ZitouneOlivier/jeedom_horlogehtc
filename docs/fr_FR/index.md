@@ -34,7 +34,10 @@ Activer ou non l'affichage de l'*heure de collecte* et de la *météo*:
 
 ### Configuration météo
 
-En mode Météo actif, les informations sont récupérées toutes les 30 minutes sur le site de ForeCast.io.
+En mode Météo actif, les informations sont récupérées toutes les 30 minutes:
+
+- soit sur le site de ForeCast.io (ancien comportement pour ceux ayant une API key, ceci sera prochainement décommissionné)
+- soit via un équipement du plugin officielle _Météo_
 
 #### Coordonnées GPS (Si la météo est activée)
 
@@ -45,11 +48,6 @@ En mode Météo actif, les informations sont récupérées toutes les 30 minutes
 ![Etape 2](../images/GoogleMap01.jpg "Etape 2")
 
 ![Etape 3](../images/GoogleMap02.jpg "Etape 3")
-
-#### Clef API Forecast.io (Si la météo est activée)
-
-- Aller vous inscrire sur <https://developer.forecast.io/>
-- Copier/Coller la clé fournie.
 
 ## Présentation du Widget
 

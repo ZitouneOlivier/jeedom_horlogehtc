@@ -46,34 +46,58 @@ $("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
-        var _cmd = { configuration: {} };
+        var _cmd = {configuration: {}};
     }
     if (!isset(_cmd.configuration)) {
         _cmd.configuration = {};
     }
+    var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+    tr += '<td style="min-width:280px;width:350px;">';
+    tr += '<div class="row">';
+    tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="logicalId" style="display : none;">';
+    tr += '<div class="col-xs-7">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 200px;" placeholder="{{Nom}}">';
+    tr += '</div>';
+    tr += '<div class="col-xs-5">';
+    tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> Icône</a>';
+    tr += '<span class="cmdAttr" data-l1key="display" data-l2key="icon" style="margin-left : 10px;"></span>';
+    tr += '</div>';
+    tr += '</div>';
+    tr += '</td>';
 
-    if (init(_cmd.configuration.category) == 'actual') {
-        var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
-        var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
-        tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="id"></span>';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
-        tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"> </span>';
-        if (init(_cmd.subType) == "numeric") {
-            tr += '<span class="cmdAttr" data-l1key="unite"></span> ';
-        }
-        tr += '</td>';
-        tr += '<td>';
-        if (init(_cmd.subType) == "numeric") {
-            //tr += '<span><label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="Historiser" data-l2key="isHistorized" checked/>{{Historiser}}</label></span> ';
-        }
-        tr += '</td>';
+    tr += '<td>';
+    tr += '</td>';
 
-        tr += '</tr>';
-        $('#table_cmd tbody').append(tr);
-        $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+    tr += '<td style="min-width:100px;width:140px;">';
+    tr += '<input class="cmdAttr form-control type input-sm" data-l1key="type" value="' + init(_cmd.type) + '" disabled style="margin-bottom : 5px;" />';
+    tr += '<input class="cmdAttr form-control type input-sm" data-l1key="subType" value="' + init(_cmd.subType) + '" disabled style="margin-bottom : 5px;" />';
+    tr += '</td>';
+
+    tr += '<td style="min-width:100px;width:140px;">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-top : 5px;"> ';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top : 5px;">';
+    tr += '</td>';
+
+    tr += '<td style="min-width:100px;width:140px;">';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" />{{Afficher}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="display" data-l2key="invertBinary"/>{{Inverser}}</label></span> ';
+    tr += '</td>';
+
+    tr += '<td style="min-width:100px;width:140px;">';
+    if (is_numeric(_cmd.id)) {
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i> {{Tester}}</a>';
     }
+    tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_cmd tbody').append(tr);
+    $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+    if (isset(_cmd.type)) {
+        $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
+    }
+    jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));
 }
