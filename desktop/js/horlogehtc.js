@@ -46,7 +46,7 @@ $("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
-        var _cmd = {configuration: {}};
+        var _cmd = { configuration: {} };
     }
     if (!isset(_cmd.configuration)) {
         _cmd.configuration = {};

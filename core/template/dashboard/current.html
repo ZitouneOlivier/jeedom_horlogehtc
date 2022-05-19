@@ -1,15 +1,28 @@
-<div class="eqLogic eqLogic-widget allowResize" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="min-width : 460px;min-height : 300px ;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#">
+<div class="eqLogic eqLogic-widget allowResize" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
+	style="min-width : 460px;min-height : 300px ;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#">
 	<div id="plugin_container">
-		<link rel="stylesheet" type="text/css" href="plugins/horlogehtc/core/template/dashboard/css/jquery.jdigiclock.css" />
-		<script type="text/javascript" src="plugins/horlogehtc/core/template/dashboard/scripts/jquery.jdigiclock.js"></script>
+		<link rel="stylesheet" type="text/css"
+			href="plugins/horlogehtc/core/template/dashboard/css/jquery.jdigiclock.css" />
+		<script type="text/javascript"
+			src="plugins/horlogehtc/core/template/dashboard/scripts/jquery.jdigiclock.js"></script>
 		<div id="digiclock#id#">
 			<div id="digital_container">
 				<div id="clock">
-					<script type="text/javascript">$('#digiclock#id#').jdigiclock();</script>		
+					<script type="text/javascript">$('#digiclock#id#').jdigiclock();</script>
 				</div>
-				<div id="weather" style="background:url('plugins/horlogehtc/core/template/dashboard/images/weather/#icone#.png') 50% 100% no-repeat">
-					<div id="local"><center><p class="city">#name#</p><p>#condition#</p></center></div>
-					<div id="temp"><p id="date"></p><p style="font-size : 11px;">#sunrise# - #sunset#</p><p class="temp">#temperature#°C</p></div>
+				<div id="weather"
+					style="background:url('plugins/horlogehtc/core/template/dashboard/images/weather/#icone#.png') 50% 100% no-repeat">
+					<div id="local">
+						<center>
+							<p class="city">#name#</p>
+							<p>#condition#</p>
+						</center>
+					</div>
+					<div id="temp">
+						<p id="date"></p>
+						<p style="font-size : 11px;">#sunrise# - #sunset#</p>
+						<p class="temp">#temperature#°C</p>
+					</div>
 					<div id="InfSup">
 						<div class="humiditePressionVent">Humidité: #humidity# %</div>
 						<div class="humiditePressionVent">Vent: #windspeed# km/h</div>
@@ -17,12 +30,16 @@
 					</div>
 				</div>
 			</div>
-			<div id="collect"><center><p style="font-size : 8px;">#collectDate#</p></center></div>
+			<div id="collect">
+				<center>
+					<p style="font-size : 8px;">#collectDate#</p>
+				</center>
+			</div>
 		</div>
 	</div>
-</div>	
+</div>
 
-				
+
 <script type="text/javascript">
 	$('#digiclock#id#').jdigiclock();
 </script>

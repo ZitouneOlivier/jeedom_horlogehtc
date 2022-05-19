@@ -13,18 +13,18 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor eqLogicAction logoSecondary" data-action="add">
 				<i class="fas fa-plus-circle"></i>
-				<br/>
+				<br />
 				<span>{{Ajouter}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<i class="fas fa-wrench"></i>
-				<br/>
+				<br />
 				<span>{{Configuration}}</span>
 			</div>
 		</div>
 		<legend><i class="fab fa-android"></i> {{Mes horloges}}</legend>
 		<div class="input-group" style="margin:5px;">
-			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 			<div class="input-group-btn">
 				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i></a>
 			</div>
@@ -33,7 +33,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			<?php
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
+				echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '">';
 				echo '<img src="' . $eqLogic->getImage() . '"/>';
 				echo "<br>";
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -45,9 +45,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
-		<span class="input-group-btn">
+			<span class="input-group-btn">
 				<a class="btn btn-sm btn-default eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i><span class="hidden-xs"> {{Configuration avancée}}</span>
-				</a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs">  {{Dupliquer}}</span>
+				</a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs"> {{Dupliquer}}</span>
 				</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-sm btn-danger eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i><span class="hidden-xs"> {{Supprimer}}</span>
 				</a>
@@ -76,11 +76,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<select class="form-control eqLogicAttr" data-l1key="object_id">
 									<option value="">{{Aucun}}</option>
 									<?php
-										$options = '';
-										foreach ((jeeObject::buildTree(null, false)) as $object) {
-											$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
-										}
-										echo $options;
+									$options = '';
+									foreach ((jeeObject::buildTree(null, false)) as $object) {
+										$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
+									}
+									echo $options;
 									?>
 								</select>
 							</div>
@@ -121,7 +121,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="MeteoOn" checked />{{Afficher}}</label>
 							</div>
 						</div>
-						<br/>
+						<br />
 						<div class="form-group">
 							<label class="col-md-3 control-label">{{Coordonnées GPS}}</label>
 							<div class="col-md-4">
@@ -134,27 +134,27 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="apikey" />
 							</div>
 						</div>
-						<br/>
+						<br />
 						<?php
 						if (class_exists('weather')) {
 							$weatherEqLogics = eqLogic::bytype('weather', true);
-							if (is_array($weatherEqLogics) && count($weatherEqLogics)>0) {
-							?>
+							if (is_array($weatherEqLogics) && count($weatherEqLogics) > 0) {
+						?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">{{Equipement météo}}</label>
 									<div class="col-sm-3">
 										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="weatherEqLogic">
 											<option value="">{{Aucun (utiliser Forecast.io)}}</option>
 											<?php
-												foreach ($weatherEqLogics as $eqLogic) {
-													echo '<option value="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</option>';
-												}
+											foreach ($weatherEqLogics as $eqLogic) {
+												echo '<option value="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</option>';
+											}
 											?>
 										</select>
 									</div>
 								</div>
-								<br/>
-							<?php
+								<br />
+						<?php
 							}
 						}
 						?>
