@@ -4,7 +4,7 @@
 	"description": "Plugin permettant d'afficher une Horloge de type HTC, avec Météo en cours issue de forecast.io",
 	"licence": "AGPL",
 	"author": "Zitoune",
-	"require": "3.3.24",
+	"require": "4.2",
 	"category": "weather",
 	"hasDependency": false,
 	"hasOwnDeamon": false,
@@ -19,7 +19,6 @@
 		"fr_FR"
 	],
 	"compatibility": [
-		"miniplus",
 		"smart",
 		"atlas",
 		"rpi",
