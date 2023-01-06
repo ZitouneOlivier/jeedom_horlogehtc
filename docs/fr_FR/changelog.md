@@ -10,6 +10,10 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
+## 2023-01-06
+
+- Mise à jour liste des commandes pour Jeedom v4.3
+
 ## 2020-02-04
 
 - Ajout de la possibilité de connecter ce plugin au info du plugin officiel Météo (weather) car l'api darkshy/forecast.io sera bientôt coupée (Mips)
