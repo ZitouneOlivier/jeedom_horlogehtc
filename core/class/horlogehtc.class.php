@@ -35,11 +35,11 @@ class horlogehtc extends eqLogic {
 		log::add('horlogehtc', 'debug', 'Start de la Fonction preUpdate()');
 
 		if ($this->getConfiguration('coordonees') != '') {
-			$this->setConfiguration('coordonees',str_replace(' ','',$this->getConfiguration('coordonees', '')));
+			$this->setConfiguration('coordonees', str_replace(' ', '', $this->getConfiguration('coordonees', '')));
 			log::add('horlogehtc', 'debug', 'Suppression des espaces des coordonees gps > ' . $this->getConfiguration('coordonees', ''));
 		}
 		if ($this->getConfiguration('apikey') != '') {
-			$this->setConfiguration('apikey',str_replace(' ','',$this->getConfiguration('apikey', '')));
+			$this->setConfiguration('apikey', str_replace(' ', '', $this->getConfiguration('apikey', '')));
 			log::add('horlogehtc', 'debug', 'Suppression des espaces des apikey forecast.io > ' . $this->getConfiguration('apikey', ''));
 		}
 
@@ -54,7 +54,7 @@ class horlogehtc extends eqLogic {
 		} else {
 			log::add('horlogehtc', 'debug', 'Horloge avec Météo');
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'summary');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'summary');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Condition', __FILE__));
@@ -66,7 +66,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Condition (summary)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'icon');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'icon');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Icone', __FILE__));
@@ -78,7 +78,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Icone (icon)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'temperature');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'temperature');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Température', __FILE__));
@@ -86,12 +86,12 @@ class horlogehtc extends eqLogic {
 				$horlogehtcCmd->setLogicalId('temperature');
 				$horlogehtcCmd->setType('info');
 				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite( '°C' );
+				$horlogehtcCmd->setUnite('°C');
 				$horlogehtcCmd->save();
 				log::add('horlogehtc', 'debug', 'Création de la commande Température (temperature)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'humidity');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'humidity');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Humidité', __FILE__));
@@ -104,7 +104,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Humidité (humidity)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'windSpeed');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'windSpeed');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Vitesse du Vent', __FILE__));
@@ -117,7 +117,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Vitesse du Vent (windSpeed)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'pressure');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'pressure');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Pression', __FILE__));
@@ -130,7 +130,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Pression (pressure)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'sunriseTime');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'sunriseTime');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Lever du Soleil', __FILE__));
@@ -142,7 +142,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Lever du Soleil (sunriseTime)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'sunsetTime');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'sunsetTime');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Coucher du Soleil', __FILE__));
@@ -154,7 +154,7 @@ class horlogehtc extends eqLogic {
 				log::add('horlogehtc', 'debug', 'Création de la commande Coucher du Soleil (sunsetTime)');
 			}
 
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(),'refresh');
+			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'refresh');
 			if (!is_object($horlogehtcCmd)) {
 				$horlogehtcCmd = new horlogehtcCmd();
 				$horlogehtcCmd->setName(__('Rafraichir', __FILE__));
@@ -176,25 +176,25 @@ class horlogehtc extends eqLogic {
 		$coordonees = $this->getConfiguration('coordonees', '');
 		$apikey = $this->getConfiguration('apikey', '');
 
-		if ($coordonees=='' || $apikey=='') return false;
+		if ($coordonees == '' || $apikey == '') return false;
 
-		$lang = explode('_',config::byKey('language'));
-		$url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $coordonees . '?units=ca&lang=' . $lang[0];
-		log::add('horlogehtc', 'debug','Appel de l API > '. $url);
+		$lang = explode('_', config::byKey('language'));
+		$url = 'https://api.forecast.io/forecast/' . $apikey . '/' . $coordonees . '?units=ca&lang=' . $lang[0];
+		log::add('horlogehtc', 'debug', 'Appel de l API > ' . $url);
 		$json_string = file_get_contents($url);
 		$parsed_json = json_decode($json_string, true);
-		log::add('horlogehtc', 'debug'," Passage Mode DAILY");
+		log::add('horlogehtc', 'debug', " Passage Mode DAILY");
 		foreach ($parsed_json['daily']['data'][0] as $key => $value) {
 			if ($key == 'sunsetTime' || $key == 'sunriseTime') {
-				$value = date('Hi',$value);
+				$value = date('Hi', $value);
 				$this->checkAndUpdateCmd($key, $value);
 			}
 		}
 
-		log::add('horlogehtc', 'debug','Passage Mode CURRENTLY');
+		log::add('horlogehtc', 'debug', 'Passage Mode CURRENTLY');
 		foreach ($parsed_json['currently'] as $key => $value) {
 			if ($key == 'humidity') {
-					$value = $value * 100;
+				$value = $value * 100;
 			}
 			$this->checkAndUpdateCmd($key, $value);
 		}
@@ -217,7 +217,7 @@ class horlogehtc extends eqLogic {
 			return 'sleet';
 		}
 
-		switch (substr($conditionId, 0,1)) {
+		switch (substr($conditionId, 0, 1)) {
 			case '2':
 				return "thunderstorm";
 			case '3':
@@ -259,10 +259,10 @@ class horlogehtc extends eqLogic {
 			if (is_object($cmd)) {
 				$cmdValue = $cmd->execCmd();
 				$this->checkAndUpdateCmd($htcCmd, $cmdValue);
-				if ($weatherCmd=='sunrise') {
+				if ($weatherCmd == 'sunrise') {
 					$sunrise = $cmdValue;
 				}
-				if ($weatherCmd=='sunset') {
+				if ($weatherCmd == 'sunset') {
 					$sunset = $cmdValue;
 				}
 			}
@@ -273,7 +273,7 @@ class horlogehtc extends eqLogic {
 			$conditionId = $conditionIdCmd->execCmd();
 
 			$hour = date('Hi');
-			if ($hour>=$sunrise && $hour<$sunset) {
+			if ($hour >= $sunrise && $hour < $sunset) {
 				$isDay = true;
 			} else {
 				$isDay = false;
@@ -287,7 +287,7 @@ class horlogehtc extends eqLogic {
 	}
 
 	public function refreshInformations() {
-		log::add('horlogehtc', 'debug','Start de la Fonction refreshInformations()');
+		log::add('horlogehtc', 'debug', 'Start de la Fonction refreshInformations()');
 
 		if (!$this->getInfoFromWeather()) {
 			$this->getInfoFromForecastIo();
@@ -310,7 +310,7 @@ class horlogehtc extends eqLogic {
 
 		if ($this->getConfiguration('temperaturelocal') == '') {
 			$temperature = $this->getCmd(null, 'temperature');
-			$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd(),1) : '';
+			$replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd(), 1) : '';
 		} else {
 			$replace['#temperature#'] = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
 		}
@@ -333,10 +333,10 @@ class horlogehtc extends eqLogic {
 		$replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
 
 		$sunrise = $this->getCmd(null, 'sunriseTime');
-		$replace['#sunrise#'] = is_object($sunrise) ? substr_replace($sunrise->execCmd(),':',-2,0) : '';
+		$replace['#sunrise#'] = is_object($sunrise) ? substr_replace($sunrise->execCmd(), ':', -2, 0) : '';
 
 		$sunset = $this->getCmd(null, 'sunsetTime');
-		$replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(),':',-2,0) : '';
+		$replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(), ':', -2, 0) : '';
 
 		$refresh = $this->getCmd(null, 'refresh');
 		$replace['#refresh_id#'] = is_object($refresh) ? $refresh->getId() : '';
@@ -347,7 +347,7 @@ class horlogehtc extends eqLogic {
 			if ($this->getConfiguration('CollectDateIsVisible') != '1') {
 				$replace['#collectDate#'] = '';
 			} else {
-				$replace['#collectDate#'] = 'Actualisé le '.$condition->getCollectDate();
+				$replace['#collectDate#'] = 'Actualisé le ' . $condition->getCollectDate();
 			}
 		} else {
 			$replace['#condition#'] = '';

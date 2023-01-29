@@ -29,7 +29,6 @@
                 dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
             }
 
-
             var options = $.extend(defaults, options);
 
             return this.each(function () {
