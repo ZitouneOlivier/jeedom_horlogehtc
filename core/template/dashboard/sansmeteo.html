@@ -8,7 +8,7 @@
 	<div id="digiclock#id#">
 		<div id="digital_container">
 			<div id="clock">
-				<script type="text/javascript">$('#digiclock#id#').jdigiclock();</script>
+				<!-- <script type="text/javascript">$('#digiclock#id#').jdigiclock();</script> -->
 			</div>
 		</div>
 	</div>
@@ -18,5 +18,7 @@
 
 
 <script type="text/javascript">
-	$('#digiclock#id#').jdigiclock();
+	setTimeout(() => {
+		$('#digiclock#id#').jdigiclock();
+	}, 2000);
 </script>
