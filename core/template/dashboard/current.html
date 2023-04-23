@@ -8,7 +8,7 @@
 		<div id="digiclock#id#">
 			<div id="digital_container">
 				<div id="clock">
-					<script type="text/javascript">$('#digiclock#id#').jdigiclock();</script>
+					<!-- <script type="text/javascript">$('#digiclock#id#').jdigiclock();</script> -->
 				</div>
 				<div id="weather"
 					style="background:url('plugins/horlogehtc/core/template/dashboard/images/weather/#icone#.png') 50% 100% no-repeat">
@@ -41,5 +41,7 @@
 
 
 <script type="text/javascript">
-	$('#digiclock#id#').jdigiclock();
+	setTimeout(() => {
+		$('#digiclock#id#').jdigiclock();
+	}, 2000);
 </script>
