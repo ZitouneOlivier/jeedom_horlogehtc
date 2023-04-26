@@ -8,10 +8,14 @@
 		<div id="digiclock#id#">
 			<div id="digital_container">
 				<div id="clock">
-					<!-- <script type="text/javascript">$('#digiclock#id#').jdigiclock();</script> -->
+					<script type="text/javascript">
+						setTimeout(() => {
+							$('#digiclock#id#').jdigiclock();
+						}, 500);
+					</script>
 				</div>
 				<div id="weather"
-					style="background:url('plugins/horlogehtc/core/template/dashboard/images/weather/#icone#.png') 50% 100% no-repeat">
+					style="background:url('plugins/horlogehtc/core/template/dashboard/images/weather/#icon#.png') 50% 100% no-repeat">
 					<div id="local">
 						<center>
 							<p class="city">#name#</p>
@@ -38,10 +42,3 @@
 		</div>
 	</div>
 </div>
-
-
-<script type="text/javascript">
-	setTimeout(() => {
-		$('#digiclock#id#').jdigiclock();
-	}, 500);
-</script>

@@ -12,11 +12,11 @@ Liste des versions du plugin Horloge HTC.
 
 ## 2023-04-22
 
-- Compatibilité Jeedom v4.4
+- Compatibilité Jeedom v4.4 (Mips)
 
 ## 2023-01-06
 
-- Mise à jour liste des commandes pour Jeedom v4.3
+- Mise à jour liste des commandes pour Jeedom v4.3 (Mips)
 
 ## 2020-02-04
 
