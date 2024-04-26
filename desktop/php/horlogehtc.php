@@ -128,76 +128,30 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="MeteoOn" checked />{{Afficher}}</label>
 								</div>
 							</div>
-							<br />
+
+							<legend><i class="fas fa-cogs"></i> {{Configuration météo}}</legend>
 							<div class="form-group">
-								<label class="col-md-4 control-label">{{Coordonnées GPS}}</label>
-								<div class="col-md-6">
-									<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="coordonees" />
-								</div>
+								<label class="col-sm-3 control-label "></label>
+								<span class="col-sm-9">{{Configurer ci-dessous les conditions pour chaque situation météorologique}}</span>
 							</div>
-							<div class="form-group">
-								<label class="col-md-4 control-label">{{Clef API Forecast.io}}</label>
-								<div class="col-md-6">
-									<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="apikey" />
-								</div>
-							</div>
-							<br />
 							<?php
-							if (class_exists('weather')) {
-								$weatherEqLogics = eqLogic::bytype('weather', true);
-								if (is_array($weatherEqLogics) && count($weatherEqLogics) > 0) {
-							?>
-									<div class="form-group">
-										<label class="col-sm-4 control-label">{{Equipement météo}}</label>
-										<div class="col-sm-6">
-											<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="weatherEqLogic">
-												<option value="">{{Aucun (utiliser Forecast.io)}}</option>
-												<?php
-												foreach ($weatherEqLogics as $eqLogic) {
-													echo '<option value="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</option>';
-												}
-												?>
-											</select>
-										</div>
-									</div>
-									<br />
-							<?php
-								}
+							asort(horlogehtc::$_weatherConditions);
+							foreach (horlogehtc::$_weatherConditions as $key => $desc) {
+								if ($key == 'default') continue;
+								echo ('<div class="form-group">');
+								echo ('<label class="col-sm-3 control-label">' . __($desc, __FILE__) . '</label>');
+								echo ('<div class="col-sm-9">');
+								echo ('<div class="input-group">');
+								echo ('<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="condition_' . $key . '" />');
+								echo ('<span class="input-group-btn">');
+								echo ('<button type="button" class="btn btn-default cursor listCmdInfo tooltips" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>');
+								echo ('</span>');
+								echo ('</div>');
+								echo ('</div>');
+								echo ('</div>');
 							}
 							?>
-							<div class="form-group">
-								<label class="col-md-4 control-label">{{Température locale}}</label>
-								<div class="col-md-6">
-									<div class="input-group">
-										<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="temperaturelocal" />
-										<span class="input-group-btn">
-											<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectTemperature"><i class="fas fa-list-alt"></i></a>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-4 control-label">{{Pression locale}}</label>
-								<div class="col-md-6">
-									<div class="input-group">
-										<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="pressionlocal" />
-										<span class="input-group-btn">
-											<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectPression"><i class="fas fa-list-alt"></i></a>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-4 control-label">{{Humidité locale}}</label>
-								<div class="col-md-6">
-									<div class="input-group">
-										<input type="text" class="eqLogicAttr form-control roundedLeft" data-l1key="configuration" data-l2key="humiditelocal" />
-										<span class="input-group-btn">
-											<a class="btn btn-default cursor roundedRight" title="Rechercher une commande" id="bt_selectHumidite"><i class="fas fa-list-alt"></i></a>
-										</span>
-									</div>
-								</div>
-							</div>
+
 						</div>
 					</fieldset>
 				</form>
@@ -207,8 +161,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 					<table id="table_cmd" class="table table-bordered table-condensed">
 						<thead>
 							<tr>
-								<th style="min-width:220px;width:350px;">{{Nom}}</th>
+								<th style="min-width:220px;width:150px;">{{Nom}}</th>
 								<th style="min-width:140px;width:200px;">{{Type}}</th>
+								<th style="min-width:260px;">{{Valeur}}</th>
 								<th style="min-width:260px;">{{Options}}</th>
 								<th>{{Etat}}</th>
 								<th style="min-width:80px;width:140px;">{{Actions}}</th>
