@@ -23,7 +23,7 @@ class horlogehtc extends eqLogic {
 	public static $_widgetPossibility = array('custom' => true);
 
 	public static $_weatherConditions = array(
-		'blank' => 'blank',
+		'blank' => 'Défaut',
 		'cloudy' => 'Légèrement nuageux',
 		'fog' => 'Brouillard',
 		'cloud' => 'Nuageux',
@@ -233,7 +233,7 @@ class horlogehtc extends eqLogic {
 		return ($hour >= $sunrise && $hour < $sunset);
 	}
 
-	private static function mapConditionToIcon(string $condition, bool $isDay) {
+	public static function mapConditionToIcon(string $condition, bool $isDay) {
 		if (!in_array($condition, ['clear', 'partly-cloudy'])) return $condition;
 
 		return $isDay ? $condition . '-day' : $condition . '-night';

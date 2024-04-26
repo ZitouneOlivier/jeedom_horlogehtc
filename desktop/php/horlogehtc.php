@@ -137,10 +137,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<?php
 							asort(horlogehtc::$_weatherConditions);
 							foreach (horlogehtc::$_weatherConditions as $key => $desc) {
-								if ($key == 'default') continue;
+								if ($key == 'blank') continue;
 								echo ('<div class="form-group">');
+
 								echo ('<label class="col-sm-3 control-label">' . __($desc, __FILE__) . '</label>');
-								echo ('<div class="col-sm-9">');
+
+								echo ('<div class="col-sm-1">');
+								echo ('<img style="max-height: 30px" src="plugins/horlogehtc/core/template/dashboard/images/weather/' . horlogehtc::mapConditionToIcon($key, true) . '.png">');
+								echo ('</div>');
+
+								echo ('<div class="col-sm-8">');
 								echo ('<div class="input-group">');
 								echo ('<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="condition_' . $key . '" />');
 								echo ('<span class="input-group-btn">');
@@ -148,6 +154,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								echo ('</span>');
 								echo ('</div>');
 								echo ('</div>');
+
 								echo ('</div>');
 							}
 							?>
