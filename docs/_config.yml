@@ -1,5 +1,5 @@
 ---
-langs: [fr_FR,en_US,es_ES] 
+langs: [fr_FR,en_US,es_ES]
 baseurl: "/"
 sass:
   sass_dir: assets/css
@@ -17,7 +17,7 @@ exclude:
 - vendor
 plugins:
 - jekyll-seo-tag
-title: "Documentation Jeedom"
+title: "Documentation Horloge HTC"
 description: "Ceci est la documentation, lier à la solution domotique Jeedom."
 author: "Jeedom"
 image: https://www.jeedom.com/site/logo.png
