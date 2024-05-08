@@ -49,6 +49,8 @@ Vous devez également configurer les conditions pour déterminer quelle icône s
 
 ![conditions](../images/conditions.png "conditions")
 
+Pour information, [vous trouverez ici les codes des conditions utilisées par le #plugin-weather officiel](https://www.weatherapi.com/docs/weather_conditions.json) mais vous n'êtes absolument pas contraint d'utiliser ce plugin.
+
 # Changelog
 
 [Voir le changelog]({{site.baseurl}}/#language#/changelog/)
