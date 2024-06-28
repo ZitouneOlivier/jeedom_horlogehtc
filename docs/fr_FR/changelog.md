@@ -10,7 +10,7 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
-## 2024-05-06
+## 2024-06-29
 
 - Correction sur le chargement du JS dans le widget
 - Modification de la configuration d'un équipement qui est complètement générique à présent pour la compatibilité avec les modifications du plugin weather.
