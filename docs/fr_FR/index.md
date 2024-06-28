@@ -6,24 +6,29 @@ lang: fr_FR
 
 # Plugin Horloge HTC
 
-Ce plugin permet d'afficher une Horloge (style HTC sense) avec ou sans la météo. +
+![Horloge HTC](../images/horlogehtc.png "Horloge HTC")
+
+Ce plugin permet d'afficher une Horloge (style HTC sense) avec ou sans la météo.
+
+## Avec la météo
 
 ![Horloge avec météo](../images/HorlogeAvecMeteo.png "Horloge avec météo")
 
+## Sans météo
+
 ![Horloge sans météo](../images/HorlogeSansMeteo.png "Horloge sans météo")
 
-## Configuration du plugin
+# Configuration du plugin
 
 Une fois le plugin installé via le market, vous devez seulement l'activer.
 
-## Configuration des équipements
+# Configuration des équipements
 
 Une fois le plugin installé et activé, veuillez vous rendre sur la page de configuration des équipements qui est accessible à partir du menu *Plugins/Météo/HorlogeHtc*.
-![menu plugin](../images/Plugin.png "menu plugin")
 
 La page du plugin regroupe l’ensemble des Horloges configurées:
 
-### Ajouter une horloge
+## Ajouter une horloge
 
 Cliquer sur "Ajouter" pour ajouter une Horloge. Renseignez ensuite les *paramètres*.
 ![Paramètres](../images/HorlogeHtc-General.png "Paramètres")
@@ -32,43 +37,20 @@ Activer ou non l'affichage de l'*heure de collecte* et de la *météo*:
 
 ![Options](../images/options.png "Options")
 
-### Configuration météo
+## Configuration météo
 
-En mode Météo actif, les informations sont récupérées toutes les 30 minutes:
+En mode Météo actif, les informations sont récupérées toutes les 30 minutes.
 
-- soit sur le site de ForeCast.io (ancien comportement pour ceux ayant une API key, ceci sera prochainement décommissionné)
-- soit via un équipement du plugin officielle _Météo_
+Pour cela vous devez configurer chacune des commandes du plugins (voir onglet commande), vous pouvez récupérer l'information depuis n'importe quelle commande Jeedom: un plugin météo de votre choix, un équipement local...
 
-#### Coordonnées GPS (Si la météo est activée)
+![commands](../images/commands.png "commands")
 
-- Aller sur <https://www.google.com/maps/>
-- Faite un "clic droit" sur l'endroit qui vous intéresse et sélectionner "Plus d'info sur cet endroit"
-- Copier/Coller les coordonnées.
+Vous devez également configurer les conditions pour déterminer quelle icône sera affichée sur le widget:
 
-![Etape 2](../images/GoogleMap01.jpg "Etape 2")
+![conditions](../images/conditions.png "conditions")
 
-![Etape 3](../images/GoogleMap02.jpg "Etape 3")
+Pour information, [vous trouverez ici les codes des conditions utilisées par le #plugin-weather officiel](https://www.weatherapi.com/docs/weather_conditions.json) mais vous n'êtes absolument pas contraint d'utiliser ce plugin.
 
-## Présentation du Widget
-
-### Sans météo
-
-![Horloge sans météo](../images/HorlogeSansMeteo.png "Horloge sans météo")
-
-### Avec la météo
-
-![Horloge avec météo](../images/HorlogeAvecMeteo.png "Horloge avec météo")
-
-La transparence est possible en mode Dashboard ou Design afin de pourvoir l'intégrer plus facilement dans vos visuels.
-
-![Horloge sans météo](../images/Design.png "Horloge avec météo")
-
-## FAQ
-
-- En cas de problème de récupération de la météo, en mode Météo activé. Vérifiez que vous n'avez pas mis d'espace dans les Coordonnées GPS.
-- Vérifiez vos logs (en mode debug), ils sont très bavard.
-- Le resize en mode dashboard n'est pas possible.
-
-## Changelog
+# Changelog
 
 [Voir le changelog]({{site.baseurl}}/#language#/changelog/)

@@ -10,6 +10,11 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
+## 2024-06-29
+
+- Correction sur le chargement du JS dans le widget
+- Modification de la configuration d'un équipement qui est complètement générique à présent pour la compatibilité avec les modifications du plugin weather.
+
 ## 2023-04-22
 
 - Compatibilité Jeedom v4.4 (Mips)

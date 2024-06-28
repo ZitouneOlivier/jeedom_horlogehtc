@@ -67,6 +67,21 @@ function addCmdToTable(_cmd) {
     tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>'
     tr += '</td>';
 
+    if (_cmd.type == 'info' && _cmd.logicalId != 'icon') {
+        tr += '<td>';
+        tr += '<div class="input-group">';
+        tr += '<input class="cmdAttr form-control input-sm roundedLeft" data-l1key="configuration" data-l2key="infoValue" />';
+        tr += '<span class="input-group-btn">';
+        tr += '<a class="btn btn-default btn-sm listCmdInfo roundedRight" data-input="infoValue"><i class="fas fa-list-alt"></i></a>';
+        tr += '</span>';
+        tr += '</div>';
+        tr += '</td>';
+    } else {
+        tr += '<td>';
+        tr += '</td>';
+    }
+
+
     tr += '<td>';
     tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isVisible" checked/>{{Afficher}}</label> ';
     tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" checked/>{{Historiser}}</label> ';
@@ -97,3 +112,18 @@ function addCmdToTable(_cmd) {
     }
     jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));
 }
+
+$("#table_cmd").delegate(".listCmdInfo", 'click', function () {
+    const el = $(this)
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
+        const calcul = el.closest('tr').find('.cmdAttr[data-l1key=configuration][data-l2key=' + el.data('input') + ']')
+        calcul.atCaret('insert', result.human)
+    })
+})
+
+$(".listCmdInfo").on('click', function () {
+    const el = $(this).closest('div').find('.eqLogicAttr[data-l1key=configuration]');
+    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
+        el.atCaret('insert', result.human);
+    });
+});

@@ -22,6 +22,34 @@ class horlogehtc extends eqLogic {
 
 	public static $_widgetPossibility = array('custom' => true);
 
+	public static $_weatherConditions = array(
+		'blank' => 'Défaut',
+		'cloudy' => 'Légèrement nuageux',
+		'fog' => 'Brouillard',
+		'cloud' => 'Nuageux',
+		'thunderstorm' => 'Orage',
+		'rain' => 'Pluie',
+		'clear' => 'Ensoleillé',
+		'partly-cloudy' => 'Partiellement ensoleillé',
+		'wind' => 'Venteux',
+		'hail' => 'Grêle',
+		'sleet' => 'Neige fondante',
+		'snow' => 'Neige'
+
+	);
+
+	private function getCurrentWeatherCondition() {
+		asort(horlogehtc::$_weatherConditions);
+		foreach (self::$_weatherConditions as $key => $desc) {
+
+			if (jeedom::evaluateExpression($this->getConfiguration("condition_{$key}"))) {
+				return $key;
+			}
+			log::add(__CLASS__, 'debug', "Condition for {$key} is false");
+		}
+		return "blank";
+	}
+
 	public static function cron30() {
 		log::add(__CLASS__, 'debug', 'Start de la Fonction cron30()');
 
@@ -32,278 +60,183 @@ class horlogehtc extends eqLogic {
 		log::add(__CLASS__, 'debug', 'Fin de la Fonction cron30()');
 	}
 
-	public function preUpdate() {
-		log::add(__CLASS__, 'debug', 'Start de la Fonction preUpdate()');
-
-		if ($this->getConfiguration('coordonees') != '') {
-			$this->setConfiguration('coordonees', str_replace(' ', '', $this->getConfiguration('coordonees', '')));
-			log::add(__CLASS__, 'debug', 'Suppression des espaces des coordonees gps > ' . $this->getConfiguration('coordonees', ''));
-		}
-		if ($this->getConfiguration('apikey') != '') {
-			$this->setConfiguration('apikey', str_replace(' ', '', $this->getConfiguration('apikey', '')));
-			log::add(__CLASS__, 'debug', 'Suppression des espaces des apikey forecast.io > ' . $this->getConfiguration('apikey', ''));
-		}
-
-		log::add(__CLASS__, 'debug', 'Fin de la Fonction preUpdate()');
-	}
-
 	public function postUpdate() {
 		log::add(__CLASS__, 'debug', 'Start de la Fonction postUpdate()');
-		if ($this->getConfiguration('MeteoOn', '0') == '0') {
-			log::add(__CLASS__, 'debug', 'Horloge sans Météo');
-			$this->refreshWidget();
-		} else {
-			log::add(__CLASS__, 'debug', 'Horloge avec Météo');
 
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'summary');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Condition', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('summary');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('string');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Condition (summary)');
-			}
 
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'icon');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Icone', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('icon');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('string');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Icone (icon)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'temperature');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Température', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('temperature');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite('°C');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Température (temperature)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'humidity');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Humidité', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('humidity');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite('%');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Humidité (humidity)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'windSpeed');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Vitesse du Vent', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('windSpeed');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite('km/h');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Vitesse du Vent (windSpeed)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'pressure');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Pression', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('pressure');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->setUnite('hPa');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Pression (pressure)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'sunriseTime');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Lever du Soleil', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('sunriseTime');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Lever du Soleil (sunriseTime)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('info', 'sunsetTime');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Coucher du Soleil', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('sunsetTime');
-				$horlogehtcCmd->setType('info');
-				$horlogehtcCmd->setSubType('numeric');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Coucher du Soleil (sunsetTime)');
-			}
-
-			/** @var horlogehtcCmd */
-			$horlogehtcCmd = $this->getCmd('action', 'refresh');
-			if (!is_object($horlogehtcCmd)) {
-				$horlogehtcCmd = new horlogehtcCmd();
-				$horlogehtcCmd->setName(__('Rafraichir', __FILE__));
-				$horlogehtcCmd->setEqLogic_id($this->getId());
-				$horlogehtcCmd->setLogicalId('refresh');
-				$horlogehtcCmd->setType('action');
-				$horlogehtcCmd->setSubType('other');
-				$horlogehtcCmd->save();
-				log::add(__CLASS__, 'debug', 'Création de la commande Rafraichir (refresh)');
-			}
-
-			$this->refreshInformations();
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'summary');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Résumé', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('summary');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('string');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Résumé (summary)');
 		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = horlogehtcCmd::byEqLogicIdAndLogicalId($this->getId(), 'icon');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Icone', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('icon');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('string');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Icone (icon)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'temperature');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Température', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('temperature');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->setUnite('°C');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Température (temperature)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'humidity');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Humidité', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('humidity');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->setUnite('%');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Humidité (humidity)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'windSpeed');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Vitesse du Vent', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('windSpeed');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->setUnite('km/h');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Vitesse du Vent (windSpeed)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'pressure');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Pression', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('pressure');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->setUnite('hPa');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Pression (pressure)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'sunriseTime');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Lever du Soleil', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('sunriseTime');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Lever du Soleil (sunriseTime)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('info', 'sunsetTime');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Coucher du Soleil', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('sunsetTime');
+			$horlogehtcCmd->setType('info');
+			$horlogehtcCmd->setSubType('numeric');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Coucher du Soleil (sunsetTime)');
+		}
+
+		/** @var horlogehtcCmd */
+		$horlogehtcCmd = $this->getCmd('action', 'refresh');
+		if (!is_object($horlogehtcCmd)) {
+			$horlogehtcCmd = new horlogehtcCmd();
+			$horlogehtcCmd->setName(__('Rafraichir', __FILE__));
+			$horlogehtcCmd->setEqLogic_id($this->getId());
+			$horlogehtcCmd->setLogicalId('refresh');
+			$horlogehtcCmd->setType('action');
+			$horlogehtcCmd->setSubType('other');
+			$horlogehtcCmd->save();
+			log::add(__CLASS__, 'debug', 'Création de la commande Rafraichir (refresh)');
+		}
+
+		$this->refreshInformations();
 
 		log::add(__CLASS__, 'debug', 'Fin de la Fonction postUpdate()');
 	}
 
-	private function getInfoFromForecastIo() {
-		$coordonees = $this->getConfiguration('coordonees', '');
-		$apikey = $this->getConfiguration('apikey', '');
+	public function refreshInformations() {
+		log::add(__CLASS__, 'debug', 'Start de la Fonction refreshInformations');
 
-		if ($coordonees == '' || $apikey == '') return false;
-
-		$lang = explode('_', config::byKey('language'));
-		$url = 'https://api.forecast.io/forecast/' . $apikey . '/' . $coordonees . '?units=ca&lang=' . $lang[0];
-		log::add(__CLASS__, 'debug', 'Appel de l API > ' . $url);
-		$json_string = file_get_contents($url);
-		$parsed_json = json_decode($json_string, true);
-		log::add(__CLASS__, 'debug', " Passage Mode DAILY");
-		foreach ($parsed_json['daily']['data'][0] as $key => $value) {
-			if ($key == 'sunsetTime' || $key == 'sunriseTime') {
-				$value = date('Hi', $value);
-				$this->checkAndUpdateCmd($key, $value);
-			}
-		}
-
-		log::add(__CLASS__, 'debug', 'Passage Mode CURRENTLY');
-		foreach ($parsed_json['currently'] as $key => $value) {
-			if ($key == 'humidity') {
-				$value = $value * 100;
-			}
-			$this->checkAndUpdateCmd($key, $value);
-		}
-		return true;
-	}
-
-	private static function mapWeatherConditionToIcon($conditionId, $isDay) {
-
-		if (in_array($conditionId, array('771', '781'))) {
-			return "wind";
-		} else if (in_array($conditionId, array('800'))) {
-			return $isDay ? 'clear-day' : 'clear-night';
-		} else if (in_array($conditionId, array('801'))) {
-			return $isDay ? 'partly-cloudy-day' : 'partly-cloudy-night';
-		} else if (in_array($conditionId, array('802'))) {
-			return 'cloudy';
-		} else if (in_array($conditionId, array('511'))) {
-			return 'hail';
-		} else if (in_array($conditionId, array('611', '612', '613'))) {
-			return 'sleet';
-		}
-
-		switch (substr($conditionId, 0, 1)) {
-			case '2':
-				return "thunderstorm";
-			case '3':
-				return "rain";
-			case '5':
-				return "rain";
-			case '6':
-				return "snow";
-			case '7':
-				return "fog";
-			case '8':
-				return "Couvert";
-		}
-
-		log::add(__CLASS__, 'warning', "no match for conditionId {$conditionId}");
-		return "blank";
-	}
-
-	private function getInfoFromWeather() {
-
-		$weatherEqLogicId = $this->getConfiguration('weatherEqLogic');
-		if ($weatherEqLogicId == '') return false;
-
-		$commandToUpdate = array(
-			'summary' => 'condition',
-			'sunriseTime' => 'sunrise',
-			'sunsetTime' => 'sunset',
-			'humidity' => 'humidity',
-			'pressure' => 'pressure',
-			'temperature' => 'temperature',
-			'windSpeed' => 'wind_speed',
+		$commandsToUpdate = array(
+			'summary',
+			'sunriseTime',
+			'sunsetTime',
+			'humidity',
+			'pressure',
+			'temperature',
+			'windSpeed',
 		);
 
 		$sunrise = '400';
 		$sunset = '2300';
 
-		foreach ($commandToUpdate as $htcCmd => $weatherCmd) {
-			$cmd = cmd::byEqLogicIdAndLogicalId($weatherEqLogicId, $weatherCmd);
+		foreach ($commandsToUpdate as $cmdLogicalId) {
+			$cmd = $this->getCmd('info', $cmdLogicalId);
 			if (is_object($cmd)) {
-				$cmdValue = $cmd->execCmd();
-				$this->checkAndUpdateCmd($htcCmd, $cmdValue);
-				if ($weatherCmd == 'sunrise') {
+				$cmdValue = jeedom::evaluateExpression($cmd->getConfiguration("infoValue"));
+				$this->checkAndUpdateCmd($cmd, $cmdValue);
+				if ($cmdLogicalId == 'sunriseTime') {
 					$sunrise = $cmdValue;
 				}
-				if ($weatherCmd == 'sunset') {
+				if ($cmdLogicalId == 'sunsetTime') {
 					$sunset = $cmdValue;
 				}
 			}
 		}
 
-		$conditionIdCmd = cmd::byEqLogicIdAndLogicalId($weatherEqLogicId, 'condition_id');
-		if (is_object($conditionIdCmd)) {
-			$conditionId = $conditionIdCmd->execCmd();
-
-			$hour = date('Hi');
-			if ($hour >= $sunrise && $hour < $sunset) {
-				$isDay = true;
-			} else {
-				$isDay = false;
-			}
-
-			$icon = self::mapWeatherConditionToIcon($conditionId, $isDay);
-			$this->checkAndUpdateCmd('icon', $icon);
-		}
-
-		return true;
-	}
-
-	public function refreshInformations() {
-		log::add(__CLASS__, 'debug', 'Start de la Fonction refreshInformations()');
-
-		if (!$this->getInfoFromWeather()) {
-			$this->getInfoFromForecastIo();
-		}
+		$condition = $this->getCurrentWeatherCondition();
+		log::add(__CLASS__, 'debug', "condition: {$condition}");
+		$icon = self::mapConditionToIcon($condition, self::isDay($sunrise, $sunset));
+		$this->checkAndUpdateCmd('icon', $icon);
 
 		$this->refreshWidget();
+	}
+
+	private static function isDay($sunrise, $sunset) {
+		$hour = date('Hi');
+		return ($hour >= $sunrise && $hour < $sunset);
+	}
+
+	public static function mapConditionToIcon(string $condition, bool $isDay) {
+		if (!in_array($condition, ['clear', 'partly-cloudy'])) return $condition;
+
+		return $isDay ? $condition . '-day' : $condition . '-night';
 	}
 
 	public function toHtml($_version = 'dashboard') {
