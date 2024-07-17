@@ -9,9 +9,18 @@
 		<div id="digital_container">
 			<div id="clock">
 				<script type="text/javascript">
-					$(document).ready(function () {
+					function waitReady() {
+					    /*console.log("waiReady...");*/
+					    if (typeof $('#digiclock#id#').jdigiclock != 'function') {
+						/*console.log("again...");*/
+						setTimeout(waitReady, 100);
+					    } else {
+						/*console.log("Ok stop !");*/
 						$('#digiclock#id#').jdigiclock();
-					});
+					    }
+					    /*console.log("End waitReady.");*/
+					}
+					waitReady();
 				</script>
 			</div>
 		</div>
