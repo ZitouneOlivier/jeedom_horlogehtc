@@ -15,25 +15,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$('#bt_selectTemperature').on('click', function () {
-    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
-        $('.eqLogicAttr[data-l2key=temperaturelocal]').atCaret('insert', result.human);
-    });
-});
-
-$('#bt_selectPression').on('click', function () {
-    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
-        $('.eqLogicAttr[data-l2key=pressionlocal]').atCaret('insert', result.human);
-    });
-});
-
-$('#bt_selectHumidite').on('click', function () {
-    jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {
-        $('.eqLogicAttr[data-l2key=humiditelocal]').atCaret('insert', result.human);
-    });
-});
-
-
 $("#table_cmd").delegate(".listEquipementInfo", 'click', function () {
     var el = $(this);
     jeedom.cmd.getSelectModal({ cmd: { type: 'info' } }, function (result) {

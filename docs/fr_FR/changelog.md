@@ -10,6 +10,10 @@ Liste des versions du plugin Horloge HTC.
 
 [Voir la documentation]({{site.baseurl/#language#/}}/)
 
+## 2025-01-15
+
+- Correction d'un bug dans la configuration sur les anciens équipements qui pouvait provoquer une erreur d'affichage sur le widget
+
 ## 2024-08-30
 
 - Compatibilité Debian 12 / PHP 8

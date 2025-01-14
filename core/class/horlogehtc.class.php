@@ -251,26 +251,14 @@ class horlogehtc extends eqLogic {
 			return '';
 		}
 
-		if ($this->getConfiguration('temperaturelocal') == '') {
-			$temperature = $this->getCmd(null, 'temperature');
-			$replace['#temperature#'] = is_object($temperature) ? round(floatval($temperature->execCmd()), 1) : '';
-		} else {
-			$replace['#temperature#'] = jeedom::evaluateExpression($this->getConfiguration('temperaturelocal'));
-		}
+		$temperature = $this->getCmd(null, 'temperature');
+		$replace['#temperature#'] = is_object($temperature) ? round(floatval($temperature->execCmd()), 1) : '';
 
-		if ($this->getConfiguration('humiditelocal') == '') {
-			$humidity = $this->getCmd(null, 'humidity');
-			$replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
-		} else {
-			$replace['#humidity#'] = jeedom::evaluateExpression($this->getConfiguration('humiditelocal'));
-		}
+		$humidity = $this->getCmd(null, 'humidity');
+		$replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
 
-		if ($this->getConfiguration('pressionlocal') == '') {
-			$pressure = $this->getCmd(null, 'pressure');
-			$replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
-		} else {
-			$replace['#pressure#'] = jeedom::evaluateExpression($this->getConfiguration('pressionlocal'));
-		}
+		$pressure = $this->getCmd(null, 'pressure');
+		$replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
 
 		$wind_speed = $this->getCmd(null, 'windSpeed');
 		$replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
@@ -323,6 +311,10 @@ class horlogehtc extends eqLogic {
 }
 
 class horlogehtcCmd extends cmd {
+
+	public function dontRemoveCmd() {
+		return true;
+	}
 
 	public function execute($_options = null) {
 		if ($this->getLogicalId() == 'refresh') {
